@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAT221 Vize Hazırlık</title>
+<script>var t='dark';try{t=localStorage.getItem('mat221:theme')||'dark';}catch(e){}document.documentElement.dataset.theme=t;</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=Plus+Jakarta+Sans:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="html/assets/katex/katex.min.css">
+<link rel="stylesheet" href="html/assets/style.css?v=0341cf91">
+<style>
+  .home-top { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .hero { position: relative; isolation: isolate; padding: 76px 0 44px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(300px, .7fr); gap: 40px 56px; align-items: end; }
+  .hero::before {
+    content: ""; position: absolute; z-index: -1; inset: -60px -30vw -40px; pointer-events: none;
+    background:
+      radial-gradient(520px 300px at 8% 20%, color-mix(in srgb, #818CF8 calc(var(--glow) * 110%), transparent), transparent 70%),
+      radial-gradient(460px 260px at 48% 0%, color-mix(in srgb, #F472B6 calc(var(--glow) * 80%), transparent), transparent 70%),
+      radial-gradient(420px 260px at 85% 60%, color-mix(in srgb, #22D3EE calc(var(--glow) * 70%), transparent), transparent 70%);
+    filter: blur(10px);
+  }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 13px 6px 11px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--text-2); background: var(--surface); border: 1px solid var(--border); margin-bottom: 22px; }
+  .pill i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+  .hero h1 { margin: 0; font: 800 clamp(2.8rem, 7vw, 5.4rem)/1 var(--f-head); letter-spacing: -.04em; }
+  .hero h1 .grad { background: linear-gradient(95deg, #818CF8 0%, #C084FC 35%, #F472B6 65%, #FB923C 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .lead { margin: 22px 0 0; max-width: 36rem; font-size: 18px; line-height: 1.6; color: var(--text-2); }
+  .hero-side { display: grid; gap: 12px; }
+  .fake-search {
+    display: flex; align-items: center; gap: 12px; width: 100%; padding: 15px 16px; cursor: text; text-align: left;
+    border: 1px solid var(--border-2); border-radius: 14px; background: var(--surface); color: var(--text-3); font-size: 15.5px;
+    box-shadow: var(--shadow); transition: border-color .15s, box-shadow .15s;
+  }
+  .fake-search:hover { border-color: #818CF8; box-shadow: 0 0 0 4px rgba(129,140,248,.15), var(--shadow); }
+  .fake-search kbd { margin-left: auto; font: 500 11px/1 var(--f-mono); padding: 5px 7px; border-radius: 6px; background: var(--surface-3); }
+  .resume { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; align-items: center; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); text-decoration: none; color: var(--text); transition: border-color .15s; }
+  .resume small { color: var(--text-3); font-size: 12.5px; font-weight: 500; grid-column: 1; }
+  .resume b { font: 700 16px/1.3 var(--f-head); grid-column: 1; }
+  .resume em { font-style: normal; color: var(--text-2); font-size: 13.5px; grid-column: 1; }
+  .resume .go { grid-column: 2; grid-row: 1 / span 3; width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); font-size: 18px; }
+  .resume:hover { border-color: var(--accent); }
+  .overall { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); }
+  .ring { --p: 0; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--green) calc(var(--p) * 1%), var(--surface-3) 0); }
+  .ring span { width: 42px; height: 42px; border-radius: 50%; background: var(--surface); display: grid; place-items: center; font: 600 12.5px var(--f-mono); }
+  .overall b { display: block; font: 700 15px/1.3 var(--f-head); }
+  .overall small { color: var(--text-3); font-size: 13px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 6px 0 56px; }
+  .stat { padding: 16px 18px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); }
+  .stat b { display: block; font: 800 1.9rem/1.1 var(--f-head); letter-spacing: -.02em; color: var(--sc); }
+  .stat span { font-size: 13.5px; color: var(--text-2); }
+
+  .sec-h { display: flex; align-items: baseline; gap: 14px; margin: 0 0 16px; }
+  .sec-h h2 { margin: 0; font: 800 1.6rem/1.2 var(--f-head); letter-spacing: -.02em; }
+  .sec-h p { margin: 0; color: var(--text-3); font-size: 14.5px; }
+  .grid { display: grid; gap: 14px; margin-bottom: 56px; }
+  .grid.sinav { grid-template-columns: repeat(2, 1fr); }
+  .grid.konu { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 960px) { .grid.konu { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid.konu { grid-template-columns: 1fr; } }
+  .card {
+    --hue: #818CF8; position: relative; overflow: hidden; isolation: isolate;
+    display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: 18px; min-height: 210px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text); text-decoration: none;
+    transition: transform .2s ease, border-color .2s, box-shadow .2s;
+  }
+  .card::before {
+    content: ""; position: absolute; z-index: -1; inset: -40% -20% auto auto; width: 260px; height: 220px;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--hue) 34%, transparent), transparent); opacity: .7; transition: opacity .2s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--hue) 55%, var(--border)); box-shadow: 0 20px 40px -24px color-mix(in srgb, var(--hue) 70%, transparent); }
+  .card:hover::before { opacity: 1; }
+  .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .badge {
+    width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; font: 800 18px/1 var(--f-head);
+    color: #0D0F14; background: var(--hue); box-shadow: 0 8px 22px -8px var(--hue);
+  }
+  .card .pdf { position: relative; z-index: 2; font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border); color: var(--text-2); text-decoration: none; background: var(--surface-2); }
+  .card .pdf:hover { color: var(--text); border-color: var(--border-2); }
+  .card h3 { margin: 6px 0 0; font: 700 1.2rem/1.25 var(--f-head); letter-spacing: -.015em; }
+  .card h3 a { color: inherit; text-decoration: none; }
+  .card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .card p { margin: 0; color: var(--text-2); font-size: 14.5px; line-height: 1.55; flex: 1; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+  .meta span { font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
+  .prog { display: flex; align-items: center; gap: 10px; font: 500 12px var(--f-mono); color: var(--text-3); }
+  .prog i { flex: 1; height: 5px; border-radius: 5px; background: var(--surface-3); overflow: hidden; }
+  .prog i b { display: block; height: 100%; width: calc(var(--p) * 1%); background: var(--hue); border-radius: inherit; }
+  .grid.sinav .card { min-height: 240px; }
+  .card.wide { grid-column: 1 / -1; min-height: 0; flex-direction: row; align-items: center; gap: 18px; }
+  .card.wide p { flex: 1; }
+  .card.wide .prog { width: 220px; }
+
+  .lower { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; margin: 0 0 60px; }
+  .panel { padding: 24px 26px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
+  .panel h2 { margin: 0 0 4px; font: 800 1.35rem/1.2 var(--f-head); letter-spacing: -.015em; }
+  .panel > p { margin: 0 0 16px; color: var(--text-3); font-size: 14px; }
+  .rules { margin: 0; padding: 0; list-style: none; counter-reset: r; display: grid; gap: 10px; font-size: 14.8px; line-height: 1.55; color: var(--text-2); }
+  .rules li { counter-increment: r; display: grid; grid-template-columns: 28px 1fr; gap: 12px; }
+  .rules li::before { content: counter(r); width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font: 600 12px var(--f-mono); color: var(--green); background: color-mix(in srgb, var(--green) 14%, transparent); }
+  .rules b { color: var(--text); font-weight: 600; }
+  .legend-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .legend-list li { display: grid; grid-template-columns: 32px 1fr; gap: 14px; align-items: center; }
+  .legend-list b { display: block; font: 700 14.5px/1.3 var(--f-head); }
+  .legend-list span { color: var(--text-3); font-size: 13.5px; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding: 22px 0 44px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 13px; }
+  .foot button { background: none; border: 0; padding: 0; color: var(--text-3); text-decoration: underline; cursor: pointer; font-size: 13px; }
+  .foot button:hover { color: var(--red); }
+
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; padding-top: 48px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .grid.sinav { grid-template-columns: 1fr; }
+    .lower { grid-template-columns: 1fr; }
+    .card.wide { flex-direction: column; align-items: stretch; }
+    .card.wide .prog { width: auto; }
+  }
+  @media (max-width: 560px) {
+    .home-top { padding: 0 16px; }
+    .grid.sinav .card, .card { min-height: 0; }
+  }
+</style>
+</head>
+<body class="home" data-base="html/" style="--accent:#818CF8">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-dot"></span>MAT221 Vize</a>
+  <div class="tb-actions">
+    <button class="tb-btn sbtn" id="searchBtn" type="button"><span class="ic ic-search"></span><span class="lbl">Ara</span><kbd>Ctrl K</kbd></button>
+    <button class="tb-btn" id="themeBtn" type="button" aria-label="Tema değiştir"><span class="ic ic-theme"></span></button>
+  </div>
+</header>
+
+<div class="home-top">
+  <section class="hero">
+    <div>
+      <span class="pill"><i></i>Diferansiyel Denklemler dersi</span>
+      <h1>MAT221 <span class="grad">Vize Hazırlık</span></h1>
+      <p class="lead">Birinci mertebe diferansiyel denklemlerin bütün konuları, 2015'ten bu yana çıkmış vize soruları, hocanın yöntemleriyle adım adım çözümler ve yıl yıl soru analizi tek yerde.</p>
+    </div>
+    <div class="hero-side">
+      <button class="fake-search" type="button" id="heroSearch"><span class="ic ic-search"></span>Bütün sayfalarda ara<kbd>Ctrl K</kbd></button>
+      <a class="resume" id="resume" hidden href="#"><small>Kaldığın yerden devam et</small><b></b><em></em><span class="go">›</span></a>
+      <div class="overall"><span class="ring" id="ovRing"><span id="ovPct">%0</span></span><div><b id="ovTxt">Henüz başlamadın</b><small>Sayfalardaki "Çalıştım" işaretleri burada toplanır.</small></div></div>
+    </div>
+  </section>
+
+  <section class="stats" id="stats"></section>
+
+  <div class="sec-h"><h2>Sınav arşivi</h2><p>çıkmış sorular, çözümler ve soru analizi</p></div>
+  <section class="grid sinav" id="gSinav"></section>
+
+  <div class="sec-h"><h2>Konu anlatımı</h2><p>dersteki sırayla</p></div>
+  <section class="grid konu" id="gKonu"></section>
+
+  <section class="lower">
+    <div class="panel">
+      <h2>Sınavda unutma</h2>
+      <p>Bütün çözümlerde uygulanan kurallar (hocanın sınav kâğıtlarından ve derslerinden).</p>
+      <ol class="rules">
+        <li><span><b>Önce tipi tanı:</b> ayrılabilir mi? değilse homojen, tam, lineer, Bernoulli, Riccati sırasıyla bak; sorudaki ipucu (dönüşüm, özel çözüm) yöntemi söyler.</span></li>
+        <li><span><b>Katsayı 1:</b> lineer, Bernoulli ve Riccati'de önce <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9463em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span>'nün katsayısını 1 yap; <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span></span></span></span>'yu işaretiyle oku.</span></li>
+        <li><span><b>İntegral çarpanı:</b> i) <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.4668em;vertical-align:-0.4811em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9857em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">Q</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> yalnız <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>? ii) <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.389em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9857em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5073em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.1389em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> yalnız <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>? Hoca ikisini de sırayla yazar; çarpınca <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> kontrol et.</span></li>
+        <li><span><b>Riccati:</b> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8352em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">2</span><span class="mord mathnormal">p</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mclose">]</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span>. Formülü ezbere değil, işaretleri kontrol ederek kullan.</span></li>
+        <li><span><b>Eğri ailesi:</b> kaç sabit varsa o kadar türev; sonuçta hiç sabit kalmaz.</span></li>
+        <li><span><b>Dik yörünge:</b> önce ailenin denklemini <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>'siz bul, sonra <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9463em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3262em;vertical-align:-0.4811em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>.</span></li>
+        <li><span><b>Aykırı çözüm:</b> Clairaut'ta <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0019em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mclose">)</span></span></span></span> ile bulunur ve hiç sabit içermez.</span></li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h2>Kutuların anlamı</h2>
+      <p>Konu ve soru sayfalarındaki renkli kutular.</p>
+      <ul class="legend-list">
+        <li style="--c: var(--amber)"><i class="shape s-giris"></i><div><b>Soru / Örnek</b><span>Sınavda veya derste verilen soru.</span></div></li>
+        <li style="--c: var(--green)"><i class="shape s-basla"></i><div><b>Çözüm</b><span>Sorular sayfasında kapalı gelir; "Çözümleri göster" ile açıp kendini sınayabilirsin.</span></div></li>
+        <li style="--c: var(--orange)"><i class="shape s-ekran"></i><div><b>Hoca derste vurguladı</b><span>Ders videosundan alıntı ve dakikası.</span></div></li>
+        <li style="--c: var(--violet)"><i class="shape s-fonk"></i><div><b>Formül / Yöntem</b><span>Ezberlenecek kalıp ve adımlar.</span></div></li>
+        <li style="--c: var(--red)"><i class="shape s-karar"></i><div><b>Dikkat</b><span>Sık yapılan hatalar.</span></div></li>
+        <li style="--c: var(--blue)"><i class="shape s-islem"></i><div><b>Tanım / Bilgi</b><span>Tanımlar ve ek açıklamalar.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>LaTeX kaynaklarından üretildi. Kaynağı değiştirince: <code class="tt">python3 tex/html_gen/build_html.py</code></span>
+    <button type="button" id="resetBtn">İlerlemeyi sıfırla</button>
+  </footer>
+</div>
+
+<div class="search" id="search" hidden>
+  <div class="search-panel" role="dialog" aria-label="Arama">
+    <input type="search" id="searchIn" placeholder="Konu, yöntem ya da kelime ara (ör. Bernoulli, integral çarpanı)" autocomplete="off">
+    <ol id="searchOut"></ol>
+    <p class="search-hint">Yukarı/aşağı ok ile seç, Enter ile git, Esc ile kapat.</p>
+  </div>
+</div>
+
+<script src="html/assets/search-index.js?v=1c8fe03a"></script>
+<script src="html/assets/app.js?v=564543ab"></script>
+<script>
+(function () {
+  var PAGES = [{"out": "vize-cozumleri", "label": "Sorular ve çözümler", "hue": "#34D399", "desc": "2015'ten bu yana çıkmış vize soruları, finallerin 1. mertebe soruları ve hepsinin hocanın yöntemleriyle adım adım çözümü.", "group": "sinav", "no": "", "h2": 7, "gfx": 0, "soru": 134, "cevap": 134, "code": 0, "units": ["24-11-2023-arasinavi", "24-11-2022-arasinavi", "12-12-2021-arasinavi", "mat221-arasinavi-tarihsiz-hocanin-el-yazisi-cozumlu", "mat202-muhendisler-icin-mat-iv-d-denklemler-arasinavi-tarihs", "13-04-2015-insaat-muh-mat202-vize-senel-a-deliceoglu-b", "02-08-2015-yaz-okulu-mat202-ara-sinavi-ozturk-deliceoglu", "11-04-2018-endustri-muh-endm203-ara-sinavi", "18-04-2019-insaat-muh-mat202-yuksek-matematik-ii-arasinavi", "bilgisayar-muh-vize-sinavi-doc-dr-a-deliceoglu-tarihsiz", "astronomi-ve-uzay-bilimleri-vize-sinavi-yrd-doc-dr-a-deliceo", "2025-2026-finali-ogrenci-notu", "08-01-2025-finali", "12-01-2024-finali", "19-01-2023-finali", "24-06-2022-finali", "26-12-2018-cevre-muh-cm205-finali-deliceoglu-arslan", "25-05-2015-insaat-muh-mat202-finali-senel-deliceoglu", "ornek-sorular-1", "ornek-sorular-2", "ornek-sorular-3"]}, {"out": "soru-analizi", "label": "Çıkmış soru analizi", "hue": "#A78BFA", "desc": "Hangi yıl hangi konudan soru gelmiş, konuların sıklığı, hocanın vurguları ve vize tahmini.", "group": "sinav", "no": "", "h2": 6, "gfx": 0, "soru": 0, "cevap": 0, "code": 0, "units": ["incelenen-sinavlar", "hangi-yil-hangi-konudan-soru-gelmis", "konularin-sikligi", "yillara-gore-egilim-mat221-2021-2023", "finallerdeki-birinci-mertebe-sorular", "2026-vizesi-icin-tahmin-ve-calisma-plani"]}, {"out": "konu-01-temel", "label": "Temel kavramlar ve denklem oluşturma", "hue": "#60A5FA", "desc": "Mertebe, derece, lineerlik, çözüm çeşitleri, eğri ailesinden denklem oluşturma, başlangıç ve sınır değer problemleri.", "group": "konu", "no": "1", "h2": 1, "gfx": 1, "soru": 34, "cevap": 34, "code": 0, "units": ["diferansiyel-denklem-nedir", "adi-ve-kismi-diferansiyel-denklemler", "mertebe", "derece", "lineer-ve-lineer-olmayan-denklemler", "cozum-kavrami-ve-cozum-cesitleri", "varlik-ve-teklik-teoremi", "egri-ailesinin-diferansiyel-denklemini-olusturma", "baslangic-ve-sinir-deger-problemleri", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-02-ayrilabilir", "label": "Değişkenlerine ayrılabilir denklemler", "hue": "#C084FC", "desc": "x'leri bir yana y'leri bir yana toplama, ayrılabilire dönüşen f(ax+by+c) tipi ve başlangıç şartı.", "group": "konu", "no": "2", "h2": 1, "gfx": 0, "soru": 22, "cevap": 22, "code": 0, "units": ["iki-yazim-sekli", "tanim-ve-cozum-yontemi", "integral-sabiti", "cozumlu-ornekler", "bolerken-kaybolan-cozumler", "ayrilabilire-donusen-denklemler", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-03-homojen", "label": "Homojen ve homojene dönüşen denklemler", "hue": "#F472B6", "desc": "f(λx, λy) testi, y = vx dönüşümü, kesişen ve paralel doğrular için kaydırma.", "group": "konu", "no": "3", "h2": 1, "gfx": 1, "soru": 23, "cevap": 23, "code": 0, "units": ["homojen-fonksiyon", "homojen-diferansiyel-denklem", "cozum-yontemi-donusumu", "cozumlu-ornekler", "homojene-donusen-denklemler", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-04-tam", "label": "Tam diferansiyel ve integral çarpanı", "hue": "#2DD4BF", "desc": "Pᵧ = Qₓ testi, f(x,y) bulma, gruplama, x'e ve y'ye bağlı integral çarpanı.", "group": "konu", "no": "4", "h2": 1, "gfx": 1, "soru": 27, "cevap": 27, "code": 0, "units": ["total-diferansiyel", "tamlik-testi", "tam-denklemin-cozumu", "tam-denklem-ornekleri", "integral-carpani", "integral-carpani-ornekleri", "ozel-integral-carpanlari-ek", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-05-lineer", "label": "Birinci mertebeden lineer denklemler", "hue": "#FBBF24", "desc": "λ = e^(∫P dx) integral çarpanı, x'e göre lineer denklemler ve uygulamalar.", "group": "konu", "no": "5", "h2": 1, "gfx": 0, "soru": 18, "cevap": 18, "code": 0, "units": ["tanim-ve-standart-bicim", "integral-carpani-yontemi", "cozumlu-ornekler", "ikinci-yontem-donusumu", "e-gore-lineer-denklemler", "lineer-denklemlerin-uygulamalari", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-06-bernoulli", "label": "Bernoulli denklemi", "hue": "#22D3EE", "desc": "u = y¹⁻ⁿ dönüşümü, hazır formül, x'e göre Bernoulli ve lojistik modeller.", "group": "konu", "no": "6", "h2": 1, "gfx": 0, "soru": 17, "cevap": 17, "code": 0, "units": ["tanim", "cozum-yontemi", "cozumlu-ornekler", "e-gore-bernoulli-denklemi", "bernoulli-denkleminin-uygulamalari", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-07-riccati", "label": "Riccati denklemi", "hue": "#FB923C", "desc": "Bir özel çözümle y = y1 + 1/v, iki özel çözüm formülü, sabit katsayılı Riccati ve özel çözüm tahmini.", "group": "konu", "no": "7", "h2": 1, "gfx": 1, "soru": 13, "cevap": 13, "code": 0, "units": ["tanim", "bir-ozel-cozum-biliniyorsa", "cozumlu-ornekler-bir-ozel-cozum", "iki-ozel-cozum-biliniyorsa", "sabit-katsayili-riccati-denklemi", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-08-degisken", "label": "Değişken değiştirme ile çözüm", "hue": "#F87171", "desc": "Tekrarlayan gruba yeni değişken: u = sin y, u = xy, u = x²y² ve iki yollu çözümler.", "group": "konu", "no": "8", "h2": 1, "gfx": 0, "soru": 18, "cevap": 17, "code": 0, "units": ["genel-strateji", "ayrilabilire-donusenler", "lineere-donusenler", "bernoulli-ye-donusenler", "tam-diferansiyele-donusenler", "iki-degiskeni-birden-degistirme", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-09-uygulama", "label": "Uygulamalar: yörüngeler ve modeller", "hue": "#818CF8", "desc": "Dik ve eğik yörüngeler, büyüme ve bozunma, Newton soğuma kanunu, karışım ve diğer modeller.", "group": "konu", "no": "9", "h2": 1, "gfx": 2, "soru": 29, "cevap": 29, "code": 0, "units": ["yorungeler", "buyume-ve-bozunma-artma-azalma-problemleri", "newton-un-soguma-isinma-kanunu", "karisim-tuz-su-problemleri", "mekanik-ve-elektrik-devreleri", "model-kurma-rehberi", "alistirmalar"]}, {"out": "konu-10-yuksek-derece", "label": "Birinci mertebe yüksek dereceli denklemler", "hue": "#A3E635", "desc": "p'ye göre çarpanlara ayırma, y'ye ve x'e göre çözülebilenler, Clairaut, Lagrange ve aykırı çözüm.", "group": "konu", "no": "10", "h2": 1, "gfx": 1, "soru": 22, "cevap": 22, "code": 0, "units": ["tanim-ve-gosterim", "ye-gore-carpanlarina-ayrilabilen-denklemler", "ye-gore-cozulebilen-denklemler", "clairaut-denklemi", "lagrange-denklemi", "bolum-ozeti", "alistirmalar"]}, {"out": "konu-11-ozet", "label": "Hangi yöntem? Karar şeması ve formüller", "hue": "#E879F9", "desc": "Denklemi gördüğünde tipini tanıma sırası, bütün formüller tek sayfada ve sık yapılan hatalar.", "group": "konu", "no": "11", "h2": 1, "gfx": 1, "soru": 0, "cevap": 0, "code": 0, "units": ["karar-semasi-birinci-mertebe-denklemler", "formul-kartlari", "sik-kullanilan-integraller-ve-ozdeslikler", "en-sik-yapilan-hatalar-butun-konular", "tanima-alistirmasi"]}, {"out": "konu-tumu", "label": "Tüm konular tek sayfada", "hue": "#E879F9", "desc": "On bir konunun hepsi art arda; baştan sona tekrar için.", "group": "konu", "no": "∑", "h2": 11, "gfx": 8, "soru": 223, "cevap": 222, "code": 0, "units": ["diferansiyel-denklem-nedir", "adi-ve-kismi-diferansiyel-denklemler", "mertebe", "derece", "lineer-ve-lineer-olmayan-denklemler", "cozum-kavrami-ve-cozum-cesitleri", "varlik-ve-teklik-teoremi", "egri-ailesinin-diferansiyel-denklemini-olusturma", "baslangic-ve-sinir-deger-problemleri", "bolum-ozeti", "alistirmalar", "iki-yazim-sekli", "tanim-ve-cozum-yontemi", "integral-sabiti", "cozumlu-ornekler", "bolerken-kaybolan-cozumler", "ayrilabilire-donusen-denklemler", "bolum-ozeti-2", "alistirmalar-2", "homojen-fonksiyon", "homojen-diferansiyel-denklem", "cozum-yontemi-donusumu", "cozumlu-ornekler-2", "homojene-donusen-denklemler", "bolum-ozeti-3", "alistirmalar-3", "total-diferansiyel", "tamlik-testi", "tam-denklemin-cozumu", "tam-denklem-ornekleri", "integral-carpani", "integral-carpani-ornekleri", "ozel-integral-carpanlari-ek", "bolum-ozeti-4", "alistirmalar-4", "tanim-ve-standart-bicim", "integral-carpani-yontemi", "cozumlu-ornekler-3", "ikinci-yontem-donusumu", "e-gore-lineer-denklemler", "lineer-denklemlerin-uygulamalari", "bolum-ozeti-5", "alistirmalar-5", "tanim", "cozum-yontemi", "cozumlu-ornekler-4", "e-gore-bernoulli-denklemi", "bernoulli-denkleminin-uygulamalari", "bolum-ozeti-6", "alistirmalar-6", "tanim-2", "bir-ozel-cozum-biliniyorsa", "cozumlu-ornekler-bir-ozel-cozum", "iki-ozel-cozum-biliniyorsa", "sabit-katsayili-riccati-denklemi", "bolum-ozeti-7", "alistirmalar-7", "genel-strateji", "ayrilabilire-donusenler", "lineere-donusenler", "bernoulli-ye-donusenler", "tam-diferansiyele-donusenler", "iki-degiskeni-birden-degistirme", "bolum-ozeti-8", "alistirmalar-8", "yorungeler", "buyume-ve-bozunma-artma-azalma-problemleri", "newton-un-soguma-isinma-kanunu", "karisim-tuz-su-problemleri", "mekanik-ve-elektrik-devreleri", "model-kurma-rehberi", "alistirmalar-9", "tanim-ve-gosterim", "ye-gore-carpanlarina-ayrilabilen-denklemler", "ye-gore-cozulebilen-denklemler", "clairaut-denklemi", "lagrange-denklemi", "bolum-ozeti-9", "alistirmalar-10", "karar-semasi-birinci-mertebe-denklemler", "formul-kartlari", "sik-kullanilan-integraller-ve-ozdeslikler", "en-sik-yapilan-hatalar-butun-konular", "tanima-alistirmasi"]}];
+  var S = window.BZStore;
+  var PDF = {
+    'vize-cozumleri': '02_Vize_Cozumleri', 'soru-analizi': '03_Soru_Analizi', 'konu-tumu': '04_Konu_Anlatimi_Tum',
+    'konu-01-temel': 'Konu_01_temel', 'konu-02-ayrilabilir': 'Konu_02_ayrilabilir', 'konu-03-homojen': 'Konu_03_homojen', 'konu-04-tam': 'Konu_04_tam',
+    'konu-05-lineer': 'Konu_05_lineer', 'konu-06-bernoulli': 'Konu_06_bernoulli', 'konu-07-riccati': 'Konu_07_riccati', 'konu-08-degisken': 'Konu_08_degisken',
+    'konu-09-uygulama': 'Konu_09_uygulama', 'konu-10-yuksek-derece': 'Konu_10_yuksek_derece', 'konu-11-ozet': 'Konu_11_ozet'
+  };
+  var MARK = { 'vize-cozumleri': 'S', 'soru-analizi': '%' };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function doneCount(p) {
+    var n = 0;
+    p.units.forEach(function (id) { if (S.get('done:' + (p.group === 'konu' ? 'konu' : p.out) + ':' + id, false)) n++; });
+    return n;
+  }
+  var total = 0, totalDone = 0, sums = { soru: 0, gfx: 0, cevap: 0, code: 0 };
+  function card(p) {
+    var d = doneCount(p), pct = p.units.length ? Math.round(d / p.units.length * 100) : 0;
+    if (p.out !== 'konu-tumu') { total += p.units.length; totalDone += d; ['soru', 'gfx', 'cevap', 'code'].forEach(function (k) { sums[k] += p[k] || 0; }); }
+    var meta = [];
+    if (p.h2 > 1) meta.push(p.h2 + ' bölüm');
+    if (p.soru) meta.push(p.soru + ' soru');
+    if (p.gfx) meta.push(p.gfx + ' şema');
+    if (p.code) meta.push(p.code + ' kod');
+    var mark = p.group === 'sinav' ? MARK[p.out] : p.no;
+    var wide = p.out === 'konu-tumu' ? ' wide' : '';
+    return '<article class="card' + wide + '" style="--hue:' + p.hue + ';--p:' + pct + '">' +
+      '<div class="card-top"><span class="badge">' + esc(mark) + '</span><a class="pdf" href="pdf/' + PDF[p.out] + '.pdf" title="Aynı içeriğin PDF hâli">PDF</a></div>' +
+      '<h3><a href="html/' + p.out + '.html">' + esc(p.label) + '</a></h3><p>' + esc(p.desc) + '</p>' +
+      '<div class="meta">' + meta.map(function (m) { return '<span>' + m + '</span>'; }).join('') + '</div>' +
+      '<div class="prog"><i><b></b></i>' + d + '/' + p.units.length + '</div></article>';
+  }
+  document.getElementById('gSinav').innerHTML = PAGES.filter(function (p) { return p.group === 'sinav'; }).map(card).join('');
+  document.getElementById('gKonu').innerHTML = PAGES.filter(function (p) { return p.group === 'konu'; }).map(card).join('');
+
+  var st = [
+    [sums.soru, 'soru ve örnek', '#FBBF24'], [sums.cevap, 'çözüm', '#34D399'],
+    [sums.gfx, 'grafik ve şema', '#60A5FA'], [11, 'konu', '#F472B6']
+  ];
+  document.getElementById('stats').innerHTML = st.map(function (s) {
+    return '<div class="stat" style="--sc:' + s[2] + '"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
+  }).join('');
+
+  var pctAll = total ? Math.round(totalDone / total * 100) : 0;
+  document.getElementById('ovRing').style.setProperty('--p', pctAll);
+  document.getElementById('ovPct').textContent = '%' + pctAll;
+  if (totalDone) document.getElementById('ovTxt').textContent = totalDone + ' / ' + total + ' başlık çalışıldı';
+
+  var last = S.get('last', null);
+  if (last && last.p) {
+    var r = document.getElementById('resume');
+    var lp = PAGES.filter(function (p) { return p.out === last.p; })[0];
+    if (lp) r.style.setProperty('--accent', lp.hue);
+    r.href = 'html/' + last.p + '.html' + (last.id ? '#' + last.id : '');
+    r.querySelector('b').textContent = last.l;
+    r.querySelector('em').textContent = (last.t ? last.t + ', ' : '') + 'sayfanın %' + (last.pct || 0) + '\'i okundu';
+    r.hidden = false;
+  }
+  document.getElementById('heroSearch').addEventListener('click', function () { window.BZOpenSearch(); });
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    if (!confirm('Bütün "çalıştım" işaretleri ve kaldığın yer silinsin mi?')) return;
+    try { Object.keys(localStorage).forEach(function (k) { if (/^mat221:(done|last|quiz)/.test(k)) localStorage.removeItem(k); }); } catch (e) {}
+    location.reload();
+  });
+})();
+</script>
+</body>
+</html>
